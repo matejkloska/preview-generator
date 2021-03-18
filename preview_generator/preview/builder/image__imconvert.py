@@ -158,7 +158,7 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
         if do_an_explicit_convert:
             explicit_source_path = "{}:{}".format(input_file_extension.lstrip("."), source_path)
             build_image_result_code = check_call(
-                ["convert", "-limit", "memory", "50MB", "-limit", "map", "200MB", "-limit", "disk", "10000MB", explicit_source_path, "-layers", "merge", dest_path],
+                ["convert", "-quality", "5", , "-limit", "memory", "50MB", "-limit", "map", "200MB", "-limit", "disk", "10000MB", explicit_source_path, "-layers", "merge", dest_path],
                 stdout=DEVNULL,
                 stderr=STDOUT,
             )
@@ -166,13 +166,13 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
             # implicit input type convert
             if build_image_result_code != 0:
                 build_image_result_code = check_call(
-                    ["convert", "-limit", "memory", "50MB", "-limit", "map", "200MB", "-limit", "disk", "10000MB", source_path, "-layers", "merge", dest_path],
+                    ["convert", "-quality", "5", "-limit", "memory", "50MB", "-limit", "map", "200MB", "-limit", "disk", "10000MB", source_path, "-layers", "merge", dest_path],
                     stdout=DEVNULL,
                     stderr=STDOUT,
                 )
         else:
             build_image_result_code = check_call(
-                ["convert","-limit", "memory", "50MB", "-limit", "map", "200MB", "-limit", "disk", "10000MB", source_path, "-layers", "merge", dest_path],
+                ["convert", "-quality", "5","-limit", "memory", "50MB", "-limit", "map", "200MB", "-limit", "disk", "10000MB", source_path, "-layers", "merge", dest_path],
                 stdout=DEVNULL,
                 stderr=STDOUT,
             )
